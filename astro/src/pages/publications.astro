@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const publications = [
+	{
+		title: 'Factor Revealing LPs and Stable Matching with Ties and Incomplete Lists.',
+		authors: [
+			'Brian C. Dean',
+			'Rommel Jalasutram',
+		],
+		venue: '3rd International Workshop on Matching Under Preferences',
+		year: '2015',
+		link: '/smti_matchup_a4.pdf',
+	},
+	{
+		title: 'Lightweight Approximate Selection',
+		authors: [
+			'Brian C. Dean',
+			'Rommel Jalasutram',
+			'Chad G. Waters',
+		],
+		venue: 'Algorithms — ESA',
+		year: '2014',
+		link: 'https://doi.org/10.1007/978-3-662-44777-2_26',
+	},
+
+	{
+		title:
+			'Acceleration of hierarchical Bayesian network based cortical models on multicore architectures',
+		authors: [
+			'Pavan Yalamanchili',
+			'Sumod K. Mohan',
+			'Rommel Jalasutram',
+			'Tarek M. Taha',
+		],
+		venue: 'Parallel Computing',
+		year: '2010',
+		link: 'https://doi.org/10.1016/j.parco.2010.04.001',
+	},
+
+	{
+		title: 'Neuromorphic algorithms on clusters of PlayStation 3s',
+		authors: [
+			'Tarek M. Taha',
+			'Pavan Yalamanchili',
+			'Mohammad Ashraf Bhuiyan',
+			'Rommel Jalasutram',
+			'Chong Chen',
+			'Richard W. Linderman',
+		],
+		venue: 'International Joint Conference on Neural Networks (IJCNN)',
+		year: '2010',
+		link: 'https://doi.org/10.1109/IJCNN.2010.5596751',
+	},
+
+	{
+		title:
+			'Character recognition with two spiking neural network models on multicore architectures',
+		authors: [
+			'Mohammad Ashraf Bhuiyan',
+			'Rommel Jalasutram',
+			'Tarek M. Taha',
+		],
+		venue:
+			'IEEE Symposium on Computational Intelligence for Multimedia Signal and Vision Processing (CIMSVP)',
+		year: '2009',
+		link: 'https://doi.org/10.1109/CIMSVP.2009.4925644',
+	},
+
+	{
+		title:
+			'Parallelizing two classes of neuromorphic models on the Cell multicore architecture',
+		authors: [
+			'Tarek M. Taha',
+			'Pavan Yalamanchili',
+			'Mohammad Ashraf Bhuiyan',
+			'Rommel Jalasutram',
+			'Sumod K. Mohan',
+		],
+		venue: 'International Joint Conference on Neural Networks (IJCNN)',
+		year: '2009',
+		link: 'https://doi.org/10.1109/IJCNN.2009.5178993',
+	},
+
+	// Add your other publications here as we collect them.
+];
+
+const theses = [
+	{
+		degree: 'PhD Dissertation',
+		title:
+			'An Approximation Algorithm for the Stable Marriage Problem with Ties and Incomplete Lists',
+		university: 'Clemson University',
+		year: '2014',
+		link: 'https://open.clemson.edu/all_dissertations/1615/',
+	},
+
+	{
+		degree: "Master's Thesis",
+		title: 'Acceleration of Spiking Neural Networks on Multicore Architectures',
+		university: 'Clemson University',
+		year: '2009',
+		link: 'https://open.clemson.edu/all_dissertations/6295/',
+	},
+];
+---
+
+<Layout>
+	<main class="container">
+		<header class="page-header">
+			<p class="eyebrow">Research</p>
+			<h1>Publications</h1>
+			<p>
+				A selection of my research publications, technical reports,
+				and academic theses.
+			</p>
+		</header>
+
+		<section>
+			<h2>Papers</h2>
+
+			<div class="publication-list">
+				{
+					publications.map((paper) => (
+						<article class="publication">
+							<div class="year">{paper.year}</div>
+
+							<div>
+								<h3>{paper.title}</h3>
+								<p class="authors">
+									{
+										paper.authors.map((author, index) => (
+											<>
+												{author === 'Rommel Jalasutram' ? (
+													<strong>{author}</strong>
+												) : (
+													author
+												)}
+												{index < paper.authors.length - 1 ? ', ' : ''}
+											</>
+										))
+									}
+								</p>
+								<p class="venue">
+									{paper.venue} · {paper.year}
+								</p>
+
+								<a
+									href={paper.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Paper →
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="theses">
+			<h2>Theses</h2>
+
+			<div class="publication-list">
+				{
+					theses.map((thesis) => (
+						<article class="publication">
+							<div class="year">{thesis.year}</div>
+
+							<div>
+								<p class="degree">{thesis.degree}</p>
+								<h3>{thesis.title}</h3>
+								<p class="authors">{thesis.university}</p>
+
+								<a
+									href={thesis.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									PDF →
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.container {
+		width: min(900px, calc(100% - 40px));
+		margin: 0 auto;
+		padding-top: 70px;
+		padding-bottom: 80px;
+	}
+
+	.page-header {
+		margin-bottom: 55px;
+	}
+
+	.eyebrow {
+		margin: 0 0 8px;
+		color: #2563eb;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0 0 12px;
+		color: #111827;
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+	}
+
+	.page-header p {
+		max-width: 650px;
+		margin: 0;
+		color: #6b7280;
+		font-size: 1.05rem;
+	}
+
+	section {
+		margin-top: 55px;
+	}
+
+	h2 {
+		margin: 0 0 20px;
+		color: #111827;
+		font-size: 1.5rem;
+	}
+
+	.publication {
+		display: grid;
+		grid-template-columns: 60px 1fr;
+		gap: 25px;
+		padding: 12px 0;
+		border-top: 1px solid #e5e7eb;
+	}
+
+	.year {
+		color: #6b7280;
+		font-size: 0.9rem;
+	}
+
+	h3 {
+		margin: 0 0 7px;
+		color: #111827;
+		font-size: 1.05rem;
+		line-height: 1.5;
+	}
+
+	.authors {
+		margin: 0 0 8px;
+		color: #6b7280;
+	}
+
+	.theses {
+		margin-top: 65px;
+	}
+
+	.degree {
+		margin: 0 0 5px;
+		color: #2563eb;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 600px) {
+		.container {
+			padding-top: 45px;
+		}
+
+		.publication {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+	}
+</style>
